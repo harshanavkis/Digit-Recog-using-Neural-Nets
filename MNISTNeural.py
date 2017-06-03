@@ -34,9 +34,9 @@ class Network:
 			for mini_batch in mini_batches:
 				self.update_mini_batch(mini_batch,eta)#eta is the learning rate
 			if test_data:
-            	print("Epoch %d: %d / %d"%(j, self.evaluate(test_data), n_test))
-            else:
-            	print("Epoch %d complete"%(j))
+            			print("Epoch %d: %d / %d"%(j, self.evaluate(test_data), n_test))
+            		else:
+            			print("Epoch %d complete"%(j))
 
 	def update_mini_batch(self,mini_batch,eta):
 		"""uses the bachpropagation algorithm to apply the gradient descent algorithm over the mini_batch
@@ -54,40 +54,40 @@ class Network:
 		"""Return a tuple (nabla_b,nabla_w) representing the gradient of the cost function
 		nabla_w and nabla_b are layer-by-layer lists of numpy arrays"""
 		nabla_b = [np.zeros(b.shape) for b in self.biases]
-        nabla_w = [np.zeros(w.shape) for w in self.weights]
-        # feedforward
-        activation = x
-        activations = [x] # list to store all the activations, layer by layer
-        zs = [] # list to store all the z vectors, layer by layer
-        for b, w in zip(self.biases, self.weights):
-            z = np.dot(w, activation)+b
-            zs.append(z)
-            activation = sigmoid(z)
-            activations.append(activation)
-        # backward pass
-        delta = self.cost_derivative(activations[-1], y) * \
-            sigmoid_prime(zs[-1])
-        nabla_b[-1] = delta
-        nabla_w[-1] = np.dot(delta, activations[-2].transpose())
+        	nabla_w = [np.zeros(w.shape) for w in self.weights]
+        	# feedforward
+        	activation = x
+        	activations = [x] # list to store all the activations, layer by layer
+        	zs = [] # list to store all the z vectors, layer by layer
+        	for b, w in zip(self.biases, self.weights):
+            		z = np.dot(w, activation)+b
+            		zs.append(z)
+            		activation = sigmoid(z)
+            		activations.append(activation)
+        	# backward pass
+        	delta = self.cost_derivative(activations[-1], y) * \
+            		sigmoid_prime(zs[-1])
+        	nabla_b[-1] = delta
+        	nabla_w[-1] = np.dot(delta, activations[-2].transpose())
         
-        for l in range(2, self.num_layers):
-            z = zs[-l]
-            sp = sigmoid_prime(z)
-            delta = np.dot(self.weights[-l+1].transpose(), delta) * sp
-            nabla_b[-l] = delta
-            nabla_w[-l] = np.dot(delta, activations[-l-1].transpose())
-        return (nabla_b, nabla_w)
+        	for l in range(2, self.num_layers):
+            		z = zs[-l]
+            		sp = sigmoid_prime(z)
+            		delta = np.dot(self.weights[-l+1].transpose(), delta) * sp
+            		nabla_b[-l] = delta
+            		nabla_w[-l] = np.dot(delta, activations[-l-1].transpose())
+        	return (nabla_b, nabla_w)
 
-    def evaluate(self,test_data):
+	def evaluate(self,test_data):
     	"""Returns the number of test inputs for which the neural network predicts the correct
     	output. Output of the neural net is the neuron in the output layer that has the highest 
     	activation value"""
-    	test_results=[(np.argmax(self.feedforward(x)),y) for (x,y) in test_data]
-    	return sum(int(x==y)for (x,y) in test_results)
+    		test_results=[(np.argmax(self.feedforward(x)),y) for (x,y) in test_data]
+    		return sum(int(x==y)for (x,y) in test_results)
 
-    def cost_derivative(self,output_activations,y):
+    	def cost_derivative(self,output_activations,y):
     	"""return the partial derivative for  the output activations"""
-    	return (output_activations-y)
+    		return (output_activations-y)
 
 def sigmoid(z):
 	#calculates the sigmoid of z
