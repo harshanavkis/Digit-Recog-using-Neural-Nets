@@ -1,7 +1,6 @@
-# Digit-Recog-using-Neural-Nets
-A three layer neural network to recognize handwritten digits.
+#A three layer neural network to recognize handwritten digits.
 ---------------------------------------------------------------------------------------------------------------------------------------
-#Tools Required
+##Tools Required
 <ol>
 <li>Python(v3.5.2)</li>
 <li>Numpy</li>
