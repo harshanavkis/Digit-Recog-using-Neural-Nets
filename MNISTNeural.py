@@ -1,10 +1,5 @@
-"""A module to implement a feedforward neural network. It makes use of Stochastic
-gradient descent, whose value is computed using the back-propagation algorithm.
-
-Uses python 3.x"""
-
-import random #standard library
-import numpy as np #third party library
+import random
+import numpy as np 
 
 #define a network class
 class Network:
